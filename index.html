@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!--<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">-->
+
+    <title>Uso del componente ciclo-vida y botones para poder producir cambios en el estado</title>
+
+
+    <!--<meta name="description" content="polymer_dev description">-->
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="/manifest.json">
+
+    <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+
+    <!--<link rel="import" href="/src/polymer_dev-app/polymer_dev-app.html">-->
+    <link rel="import" href="/src/polymer_dev-app/ciclo-vida.html">
+    <link rel="import" href="/src/polymer_dev-app/binding-example.html">
+    <link rel="import" href="/src/polymer_dev-app/cuenta-clics.html">
+    <link rel="import" href="/src/polymer_dev-app/mayoria-edad.html">
+    <link rel="import" href="/src/polymer_dev-app/probabilidad-lluvia.html">
+    <link rel="import" href="/src/polymer_dev-app/eventos-custom-app.html">
+    
+  </head>
+  <body>
+
+    <h1>Uso del componente ciclo-vida</h1>
+
+    <p>description uso del componente ciclo-vida</p>
+
+
+    <!--<polymer_dev-app></polymer_dev-app>-->
+    <ciclo-vida></ciclo-vida>
+    <ciclo-vida></ciclo-vida>
+
+    <button id="anadirAlDom">Añadir un elemento al Dom</button>
+    <button id="eliminarAlDom">Eliminar un elemento al Dom</button>
+    <button id="cambiarAlDom">Cambiar un elemento al Dom</button>
+
+    <binding-example></binding-example>
+
+    <cuenta-clics></cuenta-clics>
+
+    <mayoria-edad></mayoria-edad>
+
+    <probabilidad-lluvia presion-atmosferica="1.5" humedad="50"></probabilidad-lluvia>
+
+    <eventos-custom-app></eventos-custom-app>
+
+    <script>
+      
+      var el1 = document.createElement('ciclo-vida');
+      el1.setAttribute('id','el1');
+      //var el2 = new CicloVida();
+
+      document.getElementById('anadirAlDom').addEventListener('click',function(){
+        document.body.appendChild(el1);
+      });
+
+      document.getElementById('eliminarAlDom').addEventListener('click',function(){
+        document.body.removeChild(document.getElementById('el1'));
+      });
+
+      document.getElementById('cambiarAlDom').addEventListener('click',function(){
+        //document.body.setAttribute('test','valortest'+Date.now());
+        el1.setAttribute('test','valortest'+Date.now());
+        console.log(el1);
+      });
+
+    </script>
+
+  </body>
+</html>

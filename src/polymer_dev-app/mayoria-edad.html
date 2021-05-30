@@ -1,0 +1,59 @@
+
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+
+<dom-module id="mayoria-edad">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+    </style>
+
+    Ingrese su edad: <input type="text" value="{{clave::input}}">
+    <div>
+      Es mayor de edad: <iron-icon icon = "{{edad}}"></iron-icon>
+    </div>
+  </template>
+
+  <script>
+    class MayoriaEdad extends Polymer.Element {
+      static get is() {
+        return 'mayoria-edad';
+      }
+
+      static get properties() {
+        return {
+          clave: {
+            type: Number,
+            value: 0
+          }, 
+          edad: {
+            /*type: String,
+            value: '',*/
+            type: String,
+            value: "icons:clear",
+            computed: 'calculaMayoriaEdad(clave)'
+          }
+        };
+      }
+
+      constructor() {
+        super();
+      }
+
+      calculaMayoriaEdad(clave) {
+        if(clave >= 18) {
+          return this.icono = 'icons:check';//'Sí';
+        } else {
+          return this.icono = 'icons:clear';//'No';
+        }
+
+      }
+
+    }
+
+    window.customElements.define(MayoriaEdad.is, MayoriaEdad);
+  </script>
+</dom-module>

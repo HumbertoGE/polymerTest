@@ -1,0 +1,77 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+
+<dom-module id="alarma-on-off">
+    <template>
+        <style>
+            :host {
+              display: block
+            }
+        </style>
+
+        <iron-icon on-click="cambiarAlarma" icon="[[iconoAlarma]]"></iron-icon>
+
+    </template>
+
+    <script>
+    class Alarma extends Polymer.Element {
+      static get is() {
+        return 'alarma-on-off';
+      }
+
+      static get properties() {
+        return {
+            iconoAlarma: {
+                type: String,
+                value: 'alarm-off'
+            }
+        };
+      }
+
+      constructor() {
+        super();
+      }
+
+      cambiarAlarma() {
+        if(this.iconoAlarma == 'alarm-off') {
+            this.iconoAlarma = 'alarm';
+            //this.fire('alarma-encendida')
+            this.addEventListener('click', () => {'alarma-encendida'})
+        } else {
+            this.iconoAlarma = 'alarm-off';
+            //this.fire('alarma-apagada')
+            this.addEventListener('click', () => {'alarma-apagada'})
+        }
+      }
+
+    }
+
+    window.customElements.define(Alarma.is, Alarma);
+        
+        
+        
+        
+        
+        /*Polymer(
+            {
+                is: 'alarma-on-off',
+                properties: {
+                    iconoAlarma: {
+                        type: String,
+                        value: 'alarm-off'
+                    }
+                },
+                cambiarAlarma: function() {
+                    if(this.iconoAlarma == 'alarm-off') {
+                        this.iconoAlarma = 'alarm';
+                        this.fire('alarma-encendida')
+                    } else {
+                        this.iconoAlarma = 'alarm-off';
+                        this.fire('alarma-apagada')
+                    }
+                }
+            }
+        );*/
+    </script>
+</dom-module>

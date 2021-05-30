@@ -1,0 +1,41 @@
+<!--<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">-->
+
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+
+<dom-module id="binding-example">
+    <template>
+      <style>
+        :host {
+          display: block;
+        }
+      </style>
+      
+      <h2>Profesion es ..... [[miProfesion]]</h2>
+
+      <paper-input label = 'Profesion 2 way' value ='{{miProfesion}}'></paper-input>
+      <paper-input label = 'Profesion 1 way' value ='[[miProfesion]]'>Ejemplo</paper-input>
+
+    </template>
+
+    <script>
+        class BindingExample extends Polymer.Element {
+            static get is(){
+                return 'binding-example'
+            }
+            static get properties(){
+                return {
+                    miProfesion: {
+                        type: String,
+                        value: ''
+                    }
+                };
+            }
+            constructor(){
+                super();//llamada dentro del constructor
+            }
+        }
+        window.customElements.define(BindingExample.is, BindingExample);
+    </script>
+</dom-module>

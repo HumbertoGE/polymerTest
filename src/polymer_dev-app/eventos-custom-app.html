@@ -1,0 +1,62 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="alarma-on-off.html">
+<dom-module id="eventos-custom-app">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+        <alarma-on-off
+            on-alarma-encendida="procesarActivacionAlarma"
+            on-alarma-apagada="procesarDesactivacionAlarma">
+        </alarma-on-off>
+    </template>
+
+    <script>
+    
+    class EventosCustomApp extends Polymer.Element {
+      static get is() {
+        return 'eventos-custom-app';
+      }
+
+      static get properties() {
+        return {
+            prop1: {
+                type: String,
+                value: 'eventos-custom-app',
+            }
+        };
+      }
+
+      constructor() {
+        super();
+      }
+
+        procesarActivacionAlarma() {
+                console.log('hacer alguna cosa con la alarma activada');
+        }
+        procesarDesactivacionAlarma() {
+                console.log('hacer alguna cosa con la alarma desactivada');
+        }
+    }
+
+    window.customElements.define(EventosCustomApp.is, EventosCustomApp);
+
+    /*Polymer({
+    is: 'eventos-custom-app',
+    properties: {
+    prop1: {
+    type: String,
+    value: 'eventos-custom-app',
+    },
+    },
+    procesarActivacionAlarma: function() {
+    console.log('hacer alguna cosa con la alarma activada');
+    },
+    procesarDesactivacionAlarma: function() {
+    console.log('hacer alguna cosa con la alarma desactivada');
+    },
+    });*/
+    </script>
+</dom-module>

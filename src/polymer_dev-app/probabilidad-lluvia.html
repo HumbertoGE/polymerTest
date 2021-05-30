@@ -1,0 +1,111 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+
+<dom-module id="probabilidad-lluvia">
+  <template>
+    <style>
+      :host {
+        display: flex;
+        align-items: center;
+        font-family: sans-serif;
+        font-size: 0.9em;
+        border: 1px solid #ddd;
+        padding: 10px; 
+        justify-content: space-around;
+      }
+      span {
+        font-weight: bold;
+        display: block;
+      }
+      div {
+        text-align: center;
+        margin: 10px;
+      }
+      .probabilidad {
+        color: #003399;
+        font-size: 1.2em;
+      }
+      h2 {
+        font-size: 1.1em;
+        margin: 0 0 10px 0;
+      }
+    </style>
+
+    <div>
+      <span>Presión atmosférica</span>
+      [[presionAtmosferica]] 
+      <footer>
+        <button on-click="aumentarPresion">+</button>
+        <button on-click="disminuirPresion">-</button>
+      </footer>
+    </div>
+    <div>
+      <span>Humedad</span>
+      [[humedad]]%
+      <footer>
+          <button on-click="aumentarHumedad">+</button>
+          <button on-click="disminuirHumedad">-</button>
+        </footer>
+    </div>
+    <div class="probabilidad">
+      <h2>Probabilidad de lluvia</h2>
+      [[probabilidadLluvia]]
+    </div>
+
+  </template>
+
+  <script>
+
+    class ProbabilidadLluvia extends Polymer.Element {
+      static get is() {
+        return 'probabilidad-lluvia';
+      }
+
+      static get properties() {
+        return {
+          presionAtmosferica: Number,
+          humedad: Number,
+          probabilidadLluvia: String
+        };
+      }
+
+      static get observers() {
+        return [
+          'calcularProbabilidad(presionAtmosferica, humedad)'
+        ]
+      }
+
+      constructor() {
+        super();
+      }
+
+      calcularProbabilidad(presionAtmosferica, humedad) {
+        console.log('Estoy en CalcularProbabilidad', presionAtmosferica, humedad);
+        if(presionAtmosferica < 1 || humedad < 30) {
+          this.probabilidadLluvia = 'Baja';
+        } else if(presionAtmosferica < 2 || humedad < 50) {
+          this.probabilidadLluvia = 'Media';
+        } else if(presionAtmosferica < 3 || humedad < 70) {
+          this.probabilidadLluvia = 'Alta';
+        } else {
+          this.probabilidadLluvia = 'Muy alta';
+        }
+      }
+
+      aumentarPresion() {
+        this.presionAtmosferica++;
+      }
+      aumentarHumedad() {
+        this.humedad += 10;
+      }
+      disminuirPresion() {
+        this.presionAtmosferica--;
+      }
+      disminuirHumedad() {
+        this.humedad -= 10;
+      }
+    }
+
+    window.customElements.define(ProbabilidadLluvia.is, ProbabilidadLluvia);
+  </script>
+</dom-module>
